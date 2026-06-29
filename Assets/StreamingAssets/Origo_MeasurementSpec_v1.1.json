@@ -1,0 +1,459 @@
+{
+  "schema_version": "1.0",
+  "spec_version": "1.2-locked",
+  "date": "2026-06-25",
+  "contract": {
+    "origin": "door corner (top-right in plan)",
+    "axes": "x = leftward-into-room from origin (positive), z = into-room (positive), y = up (positive)",
+    "handedness": "right-handed, NOT mirrored",
+    "walk_order": "A down, B left, C down, D left, E up, F right (clockwise from origin)",
+    "units": "metres",
+    "render_rule": "place test cube at (0,0,0); confirm it lands at door corner BEFORE loading furniture"
+  },
+  "room": {
+    "name": "home_office",
+    "height": 2.3,
+    "shell_xz": [
+      {
+        "corner": "P0",
+        "x": 0.0,
+        "z": 0.0,
+        "note": "door corner / origin"
+      },
+      {
+        "corner": "P1",
+        "x": 0.0,
+        "z": 0.85,
+        "note": "end of wall A"
+      },
+      {
+        "corner": "P2",
+        "x": 0.935,
+        "z": 0.85,
+        "note": "end of wall B (notch step)"
+      },
+      {
+        "corner": "P3",
+        "x": 0.935,
+        "z": 2.73,
+        "note": "end of wall C"
+      },
+      {
+        "corner": "P4",
+        "x": 2.885,
+        "z": 2.73,
+        "note": "end of wall D"
+      },
+      {
+        "corner": "P5",
+        "x": 2.885,
+        "z": 0.0,
+        "note": "end of wall E; = E/F corner; desk nest point; 2cm closure absorbed"
+      }
+    ],
+    "walls": [
+      {
+        "id": "4A",
+        "from": "P0",
+        "to": "P1",
+        "length": 0.85,
+        "method": "measured",
+        "note": "short right wall; entry door"
+      },
+      {
+        "id": "4B",
+        "from": "P1",
+        "to": "P2",
+        "length": 0.935,
+        "method": "measured",
+        "note": "notch step"
+      },
+      {
+        "id": "4C",
+        "from": "P2",
+        "to": "P3",
+        "length": 1.88,
+        "method": "measured",
+        "note": "right-lower wall"
+      },
+      {
+        "id": "4D",
+        "from": "P3",
+        "to": "P4",
+        "length": 1.95,
+        "method": "measured",
+        "note": "bottom wall; shelves"
+      },
+      {
+        "id": "4E",
+        "from": "P4",
+        "to": "P5",
+        "length": 2.75,
+        "method": "measured",
+        "note": "left full wall; window; ~20mm closure residual"
+      },
+      {
+        "id": "4F",
+        "from": "P5",
+        "to": "P0",
+        "length": 2.87,
+        "method": "measured",
+        "note": "top wall; cupboard door; ~15mm closure residual"
+      }
+    ],
+    "openings": [
+      {
+        "id": "4G",
+        "name": "window",
+        "wall": "4E",
+        "offset_from": "P4",
+        "offset": 0.745,
+        "width": 1.195,
+        "sill_y": 0.82,
+        "head_y": 1.86,
+        "recess": 0.18,
+        "method": "measured"
+      },
+      {
+        "id": "4H",
+        "name": "cupboard",
+        "wall": "4F",
+        "offset_from": "P5",
+        "offset": 0.0,
+        "width": 1.33,
+        "sill_y": 0.0,
+        "head_y": 2.16,
+        "recess": 0.0,
+        "method": "measured",
+        "note": "flush at door corner"
+      },
+      {
+        "id": "4I",
+        "name": "entry",
+        "wall": "4A",
+        "offset_from": "P0",
+        "offset": 0.0,
+        "width": 0.76,
+        "sill_y": 0.0,
+        "head_y": 1.965,
+        "recess": 0.0,
+        "method": "measured",
+        "note": "flush at door corner"
+      }
+    ]
+  },
+  "furniture": [
+    {
+      "object_id": "2D",
+      "name": "desk",
+      "type": "polygon",
+      "parent": "room_shell",
+      "parent_anchor": "P5",
+      "anchor_x_runs_toward_origin": true,
+      "top_y": 0.74,
+      "thickness": 0.027,
+      "rotation_y": 0,
+      "pos_method": "derived",
+      "dims_method": "derived",
+      "note": "pentagon, open front into room. V3 wall corner sits at P5 (E/F corner). Local x runs along wall F toward origin; local z runs along wall E into room.",
+      "vertices": [
+        {
+          "id": "V3",
+          "x": 0.0,
+          "z": 0.0,
+          "note": "wall corner = nest point at P5"
+        },
+        {
+          "id": "V4",
+          "x": 0.86,
+          "z": 0.0,
+          "note": "along wall F; drawers butt this edge"
+        },
+        {
+          "id": "V0",
+          "x": 0.88,
+          "z": 0.444
+        },
+        {
+          "id": "V1",
+          "x": 0.444,
+          "z": 0.88
+        },
+        {
+          "id": "V2",
+          "x": 0.0,
+          "z": 0.86,
+          "note": "along wall E"
+        }
+      ],
+      "carcass_y_min": 0.0
+    },
+    {
+      "object_id": "2E",
+      "name": "topper",
+      "type": "polygon",
+      "parent": "2D",
+      "parent_anchor": "desk_V3",
+      "anchor_x_runs_toward_origin": true,
+      "base_y": 1.01,
+      "thickness": 0.019,
+      "rotation_y": 0,
+      "pos_method": "derived",
+      "dims_method": "derived",
+      "note": "heptagon, shares desk wall corner (E4j coincides with desk V3)",
+      "vertices": [
+        {
+          "id": "E4j",
+          "x": 0.0,
+          "z": 0.0
+        },
+        {
+          "id": "E_V5",
+          "x": 0.65,
+          "z": 0.0
+        },
+        {
+          "id": "E_V6",
+          "x": 0.65,
+          "z": 0.2,
+          "note": "notch corner, juts furthest"
+        },
+        {
+          "id": "E_V0",
+          "x": 0.49,
+          "z": 0.207
+        },
+        {
+          "id": "E_V1",
+          "x": 0.207,
+          "z": 0.49
+        },
+        {
+          "id": "E_V2",
+          "x": 0.2,
+          "z": 0.65,
+          "note": "notch corner"
+        },
+        {
+          "id": "E_V3",
+          "x": 0.0,
+          "z": 0.65
+        }
+      ]
+    },
+    {
+      "object_id": "1J",
+      "name": "drawers",
+      "type": "box",
+      "parent": "2D",
+      "parent_anchor": "P5",
+      "anchor_x_runs_toward_origin": true,
+      "box_x_min": 0.86,
+      "box_x_max": 1.31,
+      "box_z_min": 0.02,
+      "box_z_max": 0.47,
+      "y_min": 0.0,
+      "y_max": 0.75,
+      "rotation_y": 0,
+      "pos_method": "derived",
+      "dims_method": "measured",
+      "note": "flush to desk far edge (V4), 2cm off wall F, running along F toward cupboard"
+    },
+    {
+      "object_id": "8A",
+      "name": "shelf",
+      "type": "box",
+      "parent": "room_shell",
+      "parent_anchor": "room_origin",
+      "anchor_x_runs_toward_origin": false,
+      "box_x_min": 0.935,
+      "box_x_max": 1.735,
+      "box_z_min": 2.475,
+      "box_z_max": 2.73,
+      "y_min": 1.56,
+      "y_max": 1.605,
+      "rotation_y": 0,
+      "pos_method": "measured",
+      "dims_method": "measured",
+      "note": "wall D; flush to C junction; wall-mounted"
+    },
+    {
+      "object_id": "8B",
+      "name": "shelf_1",
+      "type": "box",
+      "parent": "room_shell",
+      "parent_anchor": "room_origin",
+      "anchor_x_runs_toward_origin": false,
+      "box_x_min": 1.735,
+      "box_x_max": 2.535,
+      "box_z_min": 2.475,
+      "box_z_max": 2.73,
+      "y_min": 1.34,
+      "y_max": 1.385,
+      "rotation_y": 0,
+      "pos_method": "measured",
+      "dims_method": "measured",
+      "note": "wall D; 0.80 along D from 8A"
+    },
+    {
+      "object_id": "8C",
+      "name": "amp",
+      "type": "box",
+      "parent": "8A",
+      "parent_anchor": "8A",
+      "anchor_x_runs_toward_origin": false,
+      "box_x_min": 0.935,
+      "box_x_max": 1.31,
+      "box_z_min": 2.555,
+      "box_z_max": 2.73,
+      "y_min": 1.605,
+      "y_max": 1.945,
+      "rotation_y": 0,
+      "pos_method": "measured",
+      "dims_method": "measured",
+      "note": "on shelf 8A; 0.375w x 0.175d x 0.34h; along-shelf position TBD, assumed near C junction"
+    }
+  ],
+  "desktop_objects": [
+    {
+      "object_id": "1a",
+      "name": "screen_left",
+      "parent": "2E",
+      "pos_x": 0.1,
+      "pos_z": 0.1,
+      "width": 0.61,
+      "depth": 0.18,
+      "height": 0.424,
+      "rotation_y": 10,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "on topper, wall side"
+    },
+    {
+      "object_id": "1c",
+      "name": "laptop",
+      "parent": "2E",
+      "pos_x": 0.3,
+      "pos_z": 0.15,
+      "width": 0.355,
+      "depth": 0.25,
+      "height": 0.254,
+      "rotation_y": 0,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "on topper, toward centre/notch"
+    },
+    {
+      "object_id": "1F",
+      "name": "keyboard",
+      "parent": "2D",
+      "pos_x": 0.45,
+      "pos_z": 0.45,
+      "width": 0.27,
+      "depth": 0.124,
+      "height": 0.02,
+      "rotation_y": -10,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "approx desk centroid"
+    },
+    {
+      "object_id": "1G",
+      "name": "mouse_mat",
+      "parent": "2D",
+      "pos_x": 0.3,
+      "pos_z": 0.3,
+      "width": 0.215,
+      "depth": 0.24,
+      "height": 0.005,
+      "rotation_y": -10,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "right of keyboard"
+    },
+    {
+      "object_id": "1H",
+      "name": "mouse",
+      "parent": "1G",
+      "pos_x": 0.1,
+      "pos_z": 0.12,
+      "width": 0.08,
+      "depth": 0.12,
+      "height": 0.035,
+      "rotation_y": -10,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "round object, no clean reference corner; height ~0.035"
+    },
+    {
+      "object_id": "1I",
+      "name": "phone_dock",
+      "parent": "2D",
+      "pos_x": 0.2,
+      "pos_z": 0.1,
+      "width": 0.07,
+      "depth": 0.08,
+      "height": 0.12,
+      "rotation_y": -10,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "behind keyboard; sits at angle"
+    },
+    {
+      "object_id": "1b",
+      "name": "screen_wall",
+      "parent": "4F",
+      "pos_x": 1.4,
+      "pos_z": 0.0,
+      "width": 0.73,
+      "depth": 0.15,
+      "height": 0.442,
+      "rotation_y": -30,
+      "pos_method": "estimated_photo",
+      "dims_method": "measured",
+      "note": "WALL-MOUNTED on F, above the drawers (~1.40 along F from origin); mount height ~1.2-1.66m; horizontal position TBD"
+    }
+  ],
+  "flags": [
+    {
+      "flag": "ADDITIVE",
+      "item": "v1.2 schema",
+      "detail": "added carcass_y_min to desk 2D (extrudes floor->worktop). schema_version stays 1.0 (additive only)."
+    },
+    {
+      "flag": "RESOLVED",
+      "item": "desk 2D parent",
+      "detail": "v1.1: parent corrected room_origin -> P5 (E/F corner). Was placing desk in door corner across all prior renders. Shape/dims never changed."
+    },
+    {
+      "flag": "TBD",
+      "item": "1b wall screen",
+      "detail": "horizontal position along wall F ~1.40 pending tape check; mount height ~1.2-1.66m unconfirmed"
+    },
+    {
+      "flag": "TBD",
+      "item": "8C amp",
+      "detail": "along-shelf position on 8A not measured; assumed near wall-C junction end"
+    },
+    {
+      "flag": "estimated",
+      "item": "desktop objects",
+      "detail": "1a 1c 1F 1G 1H 1I positions photo-derived, fine for v1, re-measure with tape later"
+    },
+    {
+      "flag": "absorbed",
+      "item": "closure residual",
+      "detail": "~2cm split across walls E and F; corners snapped to 90"
+    },
+    {
+      "flag": "simplified",
+      "item": "desk/topper corners",
+      "detail": "real corners curved, modelled sharp in v1"
+    },
+    {
+      "flag": "simplified",
+      "item": "desk front overhang",
+      "detail": "desktop lip over carcass not modelled in v1"
+    }
+  ]
+}
